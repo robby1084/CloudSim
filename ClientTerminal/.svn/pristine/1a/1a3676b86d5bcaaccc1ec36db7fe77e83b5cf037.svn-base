@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<bean id="scanPackages" class="org.iti.application.util.autocache.ScanPackages">
+		<constructor-arg name="packages">
+			<list>
+				<!-- 下面加入自己项目中需要被扫描的类所在的包，扫描用于将数据加入缓存的工作 -->
+				<value>*</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="entityTypeFilters">
+			<list>
+				<value>org.iti.entity.annotations.CachingEntity</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean id="securityClientCommonCacheData" class="org.iti.application.util.autocache.SecurityClientCommonCacheData" depends-on="scanPackages">
+		<property name="dataAccessService" ref="baseService" />
+	</bean>
+</beans>

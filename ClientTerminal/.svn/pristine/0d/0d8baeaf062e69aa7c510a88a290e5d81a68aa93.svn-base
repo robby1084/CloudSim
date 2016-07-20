@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 开启使用开发模式，详细错误提示,其值为true时struts.i18n.reload=true，struts.configuration.xml.reload=true -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="actionPackages" value="org.iti.framework.hebut.action" />
+	<!-- 将对象交给spring管理 -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<!-- 指定资源编码类型 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定每次请求到达，重新加载资源文件,struts.devMode==true 则struts.i18n.reload=true -->
+	<constant name="struts.i18n.reload" value="false" />
+	<!-- 指定每次配置文件更改后，自动重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.action.extension" value="do,action,jhtml,," />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+		<!--Example <action name="DesktopLoginAction" class="DesktopLoginAction"> 
+			<result name="success" type="redirect">DesktopAction.action</result> <result 
+			name="error" type="redirect">/error/login_error.html</result> </action> -->
+
+	</package>
+	<package name="ajax" namespace="/ajax" extends="json-default">
+		<!-- 用户验证登陆 -->
+		<action name="login" class="HebutListenCourseLoginAction"
+			method="toWelPage">
+			<param name="root">loginStr</param>
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="HebutResourceAction" class="HebutResourceAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="HebutTeacherCourseAction" class="HebutTeacherCourseAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导初始化页面 -->
+		<action name="SupervisorBusinessLoadInfo" class="SupervisorBusinessLoadInfo">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学校督导初始化页面 -->
+		<action name="SchoolSupervisorSearchInfoAction" class="SchoolSupervisorSearchInfoAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导预约听课 -->
+		<action name="SupervisorBusinessSearchCourseInfo" class="SupervisorBusinessSearchCourseInfo">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学校督导预约听课 -->
+		<action name="SchoolSupervisorAppointmentAction" class="SchoolSupervisorAppointmentAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导学院听课记录 -->
+		<action name="HebutDeanRecordAction" class="HebutDeanRecordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导学校听课记录 -->
+		<action name="HebutSchoolRecordAction" class="HebutSchoolRecordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导学院听课填表渲染 -->
+		<action name="ClassRecordAction" class="ClassRecordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导学院听课填表提交保存 -->
+		<action name="ClassRecordSubmitAction" class="ClassRecordSubmitAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 督导学院听课取消预约 -->
+		<action name="ClassRecordAbsortAction" class="ClassRecordAbsortAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="HebutTeacherClassRecordAction" class="HebutTeacherClassRecordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 添加督导人员 -->
+		<action name="HebutAddSchoolManagerAction" class="HebutAddSchoolManagerAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 初始化全校老师 除督导外 -->
+		<action name="HebutInitAllTeacherAction" class="HebutInitAllTeacherAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学院设置督导 -->
+		<action name="HebutDeanRoleManageAction" class="HebutDeanRoleManageAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSupervisorSearchCourseAction" class="PhoneSupervisorSearchCourseAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSupervisorSubscribeCourseAction" class="PhoneSupervisorSubscribeCourseAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSupervisorLoadSubcribedCourseAction" class="PhoneSupervisorLoadSubcribedCourseAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneTeacherLoadBeSubcribedCourseAction" class="PhoneTeacherLoadBeSubcribedCourseAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSupervisorSubmitClassRecordAction" class="PhoneSupervisorSubmitClassRecordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSupervisorCancelSubscribeAction" class="PhoneSupervisorCancelSubscribeAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="PhoneSearchEmptyClassroomAction" class="PhoneSearchEmptyClassroomAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 教师统计 -->
+		<action name="TeacherInitWindowAction" class="TeacherInitWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学校教师统计 -->
+		<action name="SchoolTeacherInitWindowAction" class="SchoolTeacherInitWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 教师查看听课记录（非记录详情） -->
+		<action name="TeacherDetailWindowAction" class="TeacherDetailWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学校教师查看听课记录（非记录详情） -->
+		<action name="TeacherDetailWindowAction" class="TeacherDetailWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学院督导统计 -->
+		<action name="DeanSupervisorIntiWindowAction" class="DeanSupervisorIntiWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学院督导显示细节统计 -->
+		<action name="DeanSupervisorDetailWindowAction" class="DeanSupervisorDetailWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学校督导统计 -->
+		<action name="SchoolSupervisorStatisticAction" class="SchoolSupervisorStatisticAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="SchoolSupervisorDetailWindowAction" class="SchoolSupervisorDetailWindowAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 学院听课统计 -->
+		<action name="HebutDeanListenRecordStatisticsAction" class="HebutDeanListenRecordStatisticsAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="HebutCollegeListenRecordDetailAction" class="HebutCollegeListenRecordDetailAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 修改密码 -->
+		<action name="EditPasswordAction" class="EditPasswordAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 注册 -->
+		<action name="HebutCourseRegisterAction" class="HebutCourseRegisterAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+			<result name="initDepart" type="json"></result>
+		</action>
+		<!-- 打印  -->
+		<action name="PrintPageAction" class="PrintPageAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 异常情况处理页面  -->
+		<action name="ErrorHandleAction" class="ErrorHandleAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 异常情况提交Action  -->
+		<action name="ErrorHandleSubmitAction" class="ErrorHandleSubmitAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+	</package>
+</struts>

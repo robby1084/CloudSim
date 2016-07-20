@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://cxf.apache.org/jaxws 
+          http://cxf.apache.org/schemas/jaxws.xsd">
+ 
+ 	<!-- http://localhost:8080/ServerTerminal/ws/HelloWorld -->
+	<!-- http://localhost:8080/MobileSMS/ws/mobileSMS -->
+	<!-- http://115.24.161.77:8080/MobileSMS/ws/mobileSMS -->
+	
+    <!-- <jaxws:client id="cxfClient"
+                  serviceClass="org.iti.cxf.client.service.ICXFMobileSMSService"
+                  address="http://115.24.161.77:8080/MobileSMS/ws/mobileSMS" /> -->
+                  
+    <jaxws:client id="cxfClient"
+                  serviceClass="org.iti.cxf.client.service.IDownLoadImageService"
+                  address="http://localhost:8082/DongAnInvest/ws/download" />
+</beans>

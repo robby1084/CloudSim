@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="*" />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- Single RMI Server -->
+	<!-- <bean id="authenticationInfoService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean"> 
+		<property name="serviceUrl" value="rmi://127.0.0.1:1099/AuthenticationInfoService" 
+		/> <property name="serviceInterface" value="org.iti.security.rmi.interfaces.AuthenticationInfoService" 
+		/> </bean> -->
+	<!-- RMI Server Cluster -->
+	<bean name="_RmiEndpointFactory"
+		class="org.softamis.cluster4spring.rmi.support.RmiEndpointFactory" />
+	<bean id="authenticationInfoServiceParent"
+		class="org.softamis.cluster4spring.rmi.RmiUrlListProxyFactoryBean"
+		abstract="true">
+		<property name="refreshEndpointsOnConnectFailure" value="true" />
+		<property name="refreshEndpointsOnStartup" value="true" />
+		<property name="registerTraceInterceptor" value="true" />
+		<property name="switchEndpointOnFailure" value="true" />
+		<property name="endpointFactory" ref="_RmiEndpointFactory" />
+		<property name="endpointSelectionPolicy">
+			<bean
+				class="org.softamis.cluster4spring.support.invocation.DefaultEndpointSelectionPolicy" />
+		</property>
+	</bean>
+	<bean id="authenticationInfoService" parent="authenticationInfoServiceParent">
+		<property name="serviceInterface"
+			value="org.iti.security.rmi.interfaces.AuthenticationInfoService" />
+		<property name="serviceURLs">
+			<list>
+				<!-- <bean class="org.softamis.cluster4spring.support.ServiceMoniker">
+					<constructor-arg>
+						<value>rmi://115.24.161.37:1099/AuthenticationInfoService</value>
+					</constructor-arg>
+				</bean> -->
+				<bean class="org.softamis.cluster4spring.support.ServiceMoniker">
+					<constructor-arg>
+						<value>rmi://115.24.161.33:1099/AuthenticationInfoService</value>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- Basic Params -->
+	<bean id="propertiesLoaderForWebAppForInit" class="org.iti.application.util.PropertiesLoaderForWebApp">
+		<constructor-arg>
+			<map>
+				<entry key="ThreadPool" value="resources/system/ThreadPool.properties" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<import resource="classpath*:/resources/context/Cache.xml" />
+	<import resource="classpath*:/resources/context/ApplicationAutoCacheData.xml" />
+
+	<bean id="threadPoolInfrastructure"
+		class="org.iti.application.init.basic.Infrastructures.ThreadPoolInfrastructure"
+		depends-on="propertiesLoaderForWebAppForInit">
+		<property name="sequence" value="-10" />
+	</bean>
+	<bean id="autoCacheDataInfrastructure"
+		class="org.iti.application.init.basic.Infrastructures.AutoCacheDataInfrastructure">
+		<property name="sequence" value="-9" />
+		<property name="securityClientCommonCacheData" ref="securityClientCommonCacheData" />
+	</bean>
+	<bean id="basicApplicationInfrastructure"
+		class="org.iti.application.init.InitializationApplicationInfrastructure">
+		<constructor-arg>
+			<list>
+				<ref bean="threadPoolInfrastructure" />
+				<ref bean="autoCacheDataInfrastructure" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+
+
+</beans>
