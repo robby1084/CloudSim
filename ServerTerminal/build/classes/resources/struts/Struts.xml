@@ -50,5 +50,9 @@
 			<result name="success" type="json"></result>
 			<result name="error" type="json"></result>
 		</action>
+		<action name="RedisForValue" class="RedisForValue">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
 	</package>
 </struts>

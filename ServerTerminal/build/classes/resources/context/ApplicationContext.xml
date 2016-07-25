@@ -24,6 +24,7 @@
 	<import resource="classpath*:/resources/context/HibernatePersistence.xml" />
 	<import resource="classpath*:/resources/context/SpringDataMongoDB.xml" />
 	<import resource="classpath*:/resources/context/ApplicationTasks.xml" />
+	<import resource="classpath*:/resources/context/SpringDataRedis.xml" />
 	<!-- <import resource="classpath*:/resources/context/dubbo-provider.xml" /> -->
 	<!-- <import resource="classpath*:/resources/context/SpringJaxWs.xml" /> -->
 	<!-- <import resource="classpath*:/resources/context/JaxWs.xml" /> -->
