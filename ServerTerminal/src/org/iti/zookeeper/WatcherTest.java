@@ -14,7 +14,7 @@ import org.iti.rmi.service.Constant;
 
 public class WatcherTest {
 
-	public CountDownLatch latch = new CountDownLatch(1);
+	public static CountDownLatch latch = new CountDownLatch(1);
 	
 	public static void main(String[] args) throws KeeperException,
 			InterruptedException {

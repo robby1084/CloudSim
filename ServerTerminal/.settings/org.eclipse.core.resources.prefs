@@ -1,6 +1,13 @@
 eclipse.preferences.version=1
+encoding//org.iti.common.cache/org/iti/common/cache/CommonCache.java=GBK
+encoding//org.iti.common.util/org/iti/common/util/GlobeKeyBuilder.java=GBK
+encoding//org.iti.entity.interfaces/org/iti/entity/annotations/CachingEntity.java=GBK
 encoding//org.iti.rdbms.base/org/iti/rdbms/base/BaseService.java=GBK
 encoding//org.iti.rdbms.base/org/iti/rdbms/base/impl/BaseServiceImpl.java=GBK
+encoding//org.iti.security.client.common/org/iti/application/util/ReadDataUtil.java=GBK
+encoding//org.iti.security.client.common/org/iti/application/util/autocache/SecurityClientCommonCacheData.java=GBK
+encoding//org.iti.security.client.common/org/iti/security/client/common/filter/CommonPermissionFilter.java=GBK
 encoding//src/org/iti/framework/hebut/basesevice/HebutBaseService.java=GBK
 encoding//src/org/iti/framework/hebut/baseseviceimpl/HebutBaseServiceImpl.java=GBK
+encoding//src/org/iti/framework/hebut/filter/FilterUtil.java=GBK
 encoding/<project>=UTF-8
