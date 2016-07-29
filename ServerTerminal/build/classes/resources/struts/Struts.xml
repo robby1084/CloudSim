@@ -54,5 +54,21 @@
 			<result name="success" type="json"></result>
 			<result name="error" type="json"></result>
 		</action>
+		<action name="RedisForList" class="RedisForList">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="RedisForSet" class="RedisForSet">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="RedisForZSet" class="RedisForZSet">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="RedisForHash" class="RedisForHash">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
 	</package>
 </struts>

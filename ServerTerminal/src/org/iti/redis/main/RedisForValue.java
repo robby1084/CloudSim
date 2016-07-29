@@ -1,7 +1,5 @@
 package org.iti.redis.main;
 
-import javax.annotation.Resource;
-
 import org.iti.http.interfaces.abstracts.action.AbstractHttpInterfaceAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

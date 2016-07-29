@@ -19,8 +19,20 @@
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
 		p:host-name="10.1.40.90" p:port="6379" p:pool-config-ref="poolConfig" />
 
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+	<bean id="stringSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+
+	<bean id="valueSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="keySerializer" ref="stringSerializer" />
+		<property name="hashKeySerializer" ref="stringSerializer" />
+		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+		</property>
+		<property name="hashValueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+		</property>
 	</bean>
 
 
