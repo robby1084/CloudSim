@@ -55,4 +55,8 @@ public class SMSEntity implements Serializable{
 		this.operator = operator;
 	}
 
+	@Override
+	public String toString(){
+		return this.id+this.content+this.phone+this.operator;
+	}
 }

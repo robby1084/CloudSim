@@ -37,6 +37,7 @@ public class RedisForZSet extends AbstractHttpInterfaceAction {
 		redisTemplate.opsForZSet().add("zset1",
 				new SMSEntity(3, "phone3", "content3", 1), 3);
 		List<Object> list = redisTemplate.exec();
+		System.out.println(redisTemplate.boundZSetOps("zset1").size());
 		for (Object o : list) {
 			if (o instanceof SMSEntity) {
 				o = (SMSEntity) o;
@@ -47,10 +48,25 @@ public class RedisForZSet extends AbstractHttpInterfaceAction {
 			System.out.println(o);
 		}
 
-		Set<SMSEntity> set = redisTemplate.boundZSetOps("zset1").rangeByScore(
+		Set<SMSEntity> set1 = redisTemplate.boundZSetOps("zset1").rangeByScore(
 				2, 4);
-
+		printResult(set1);
+		System.out.println("------");
+		System.out.println(redisTemplate.boundZSetOps("zset1").size());
+		//redisTemplate.boundZSetOps("zset1").
+		
 		return super.defaultExecute();
+	}
+
+	private <T> void printResult(Set<T> set) {
+
+		for (T t : set) {
+			SMSEntity entity;
+			if (t instanceof SMSEntity) {
+				entity = (SMSEntity) t;
+				System.out.println(entity.toString());
+			}
+		}
 	}
 
 	@Override
