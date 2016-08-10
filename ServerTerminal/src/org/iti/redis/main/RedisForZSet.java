@@ -25,7 +25,7 @@ public class RedisForZSet extends AbstractHttpInterfaceAction {
 	@Override
 	public String defaultExecute() throws Throwable {
 
-		redisTemplate.multi();
+		//redisTemplate.multi();
 		redisTemplate.opsForZSet().add("zset1",
 				new SMSEntity(1, "phone1", "content1", 1), 2);
 		redisTemplate.opsForZSet().add("zset1",
@@ -36,9 +36,9 @@ public class RedisForZSet extends AbstractHttpInterfaceAction {
 				new SMSEntity(2, "phone2", "content2", 2), 1);
 		redisTemplate.opsForZSet().add("zset1",
 				new SMSEntity(3, "phone3", "content3", 1), 3);
-		List<Object> list = redisTemplate.exec();
+		//List<Object> list = redisTemplate.exec();
 		System.out.println(redisTemplate.boundZSetOps("zset1").size());
-		for (Object o : list) {
+		/*for (Object o : list) {
 			if (o instanceof SMSEntity) {
 				o = (SMSEntity) o;
 				System.out.println(((SMSEntity) o).getId()
@@ -46,14 +46,15 @@ public class RedisForZSet extends AbstractHttpInterfaceAction {
 						+ ((SMSEntity) o).getContent());
 			}
 			System.out.println(o);
-		}
+		}*/
 
 		Set<SMSEntity> set1 = redisTemplate.boundZSetOps("zset1").rangeByScore(
 				2, 4);
 		printResult(set1);
 		System.out.println("------");
 		System.out.println(redisTemplate.boundZSetOps("zset1").size());
-		//redisTemplate.boundZSetOps("zset1").
+		System.out.println(redisTemplate.boundZSetOps("zset1").zCard());
+		//redisTemplate.boundZSetOps("zset1")
 		
 		return super.defaultExecute();
 	}
